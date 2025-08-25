@@ -6,14 +6,16 @@
 
 \begin{document}
 
-% Titlepage
+% Titlepage (uses macros defined in preamble which you can override in main.tex)
 \input{titlepage.tex}
 
-% Índice de capítulos (manual y con enlaces rápidos)
-\input{chapters/index.tex}
-
+% Table of contents
+\cleardoublepage
 	ableofcontents
 \newpage
+
+% Optional manual chapter index (keeps quick links if present)
+\input{chapters/index.tex}
 
 % Chapters (modular files under chapters/)
 \input{chapters/intro.tex}

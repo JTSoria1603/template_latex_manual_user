@@ -1,4 +1,4 @@
-% ---- preamble.tex (auto-extracted from main.tex) ----
+% ---- preamble.tex (template) ----
 \documentclass[12pt,a4paper]{report}
 
 % -------------------- Tipografía y estilo base --------------------
@@ -34,11 +34,15 @@
 
 % -------------------- Cabecera y pie --------------------
 \usepackage{fancyhdr}
+% Template variables (override these in main.tex if desired)
+\newcommand{\docTitle}{Manual de ejemplo}
+\newcommand{\docVersion}{0.0.1}
+\newcommand{\docAuthor}{Autor Nombre}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{Manual CNC para PCBs}
-\fancyhead[R]{Versión 1.0.0}
-\fancyfoot[L]{Juan Tomás Soria}
+\fancyhead[L]{\docTitle}
+\fancyhead[R]{Versi\'on \docVersion}
+\fancyfoot[L]{\docAuthor}
 \fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -54,58 +58,83 @@
 
 % -------------------- Boxes Tip/Nota/Cuidado --------------------
 \usepackage[most]{tcolorbox}
-\tcbset{colback=white,arc=6pt,boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
+	cbset{colback=white,arc=6pt,boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
 
 \newtcolorbox{tipbox}{colback=ok!10,colframe=ok!50!black,
-overlay={\node[anchor=north west,inner sep=6pt,text=ok!40!black]
-at (frame.north west){\bfseries Tip};}}
+  overlay={\node[anchor=north west,inner sep=6pt,text=ok!40!black]
+  at (frame.north west){\bfseries Tip};}}
 \newtcolorbox{notebox}{colback=brand!8,colframe=brand!60!black,
-overlay={\node[anchor=north west,inner sep=6pt,text=brand!40!black]
-at (frame.north west){\bfseries Nota};}}
+  overlay={\node[anchor=north west,inner sep=6pt,text=brand!40!black]
+  at (frame.north west){\bfseries Nota};}}
 \newtcolorbox{warnbox}{colback=warn!10,colframe=warn!60!black,
-overlay={\node[anchor=north west,inner sep=6pt,text=warn!50!black]
-at (frame.north west){\bfseries Cuidado};}}
+  overlay={\node[anchor=north west,inner sep=6pt,text=warn!50!black]
+  at (frame.north west){\bfseries Cuidado};}}
 
-% -------------------- Código con minted --------------------
-\usepackage[newfloat]{minted} % Requiere -shell-escape
-\setminted{
-  breaklines=true,
-  autogobble=true,
-  fontsize=\small,
-  bgcolor=bgcode,
-}
-\makeatletter
-\setminted{
-  breaklines=true,
-  autogobble=true,
-  fontsize=\small,
-  bgcolor=bgcode,
-  fontfamily=tt,
-  formatcom=\color{fgcode}  % <- fuerza el texto en fgcode
-}
-\makeatother
+% -------------------- Código: minted opcional + fallback para Overleaf --------------------
+% Por defecto desactivamos minted para compatibilidad con Overleaf (no siempre permite shell-escape).
+\newif\ifuseminted
+\usemintedfalse % cambiar a \usemintedtrue si se desea usar minted (requiere -shell-escape)
 
-\newtcblisting{codeblock}[2][]{%
-  listing engine=minted,
-  minted language=#2,
-  minted options={fontsize=\small,breaklines,autogobble,bgcolor=bgcode},
-  colback=bgcode,
-  colframe=black!70,
-  arc=6pt,
-  boxrule=0.6pt,
-  left=10pt,right=10pt,top=8pt,bottom=8pt,
-  overlay={
-    \node[anchor=north west, inner sep=6pt] at (frame.north west)
-    {\tcbox[colback=brand, colframe=brand, arc=999pt, boxsep=2pt,
-           left=6pt,right=6pt, top=1pt,bottom=1pt,
-           on line, nobeforeafter, tcbox raise base]{\color{white}\footnotesize #2}};
-  },
-  #1
-}
+\ifuseminted
+  \usepackage[newfloat]{minted} % Requiere -shell-escape
+  \setminted{
+    breaklines=true,
+    autogobble=true,
+    fontsize=\small,
+    bgcolor=bgcode,
+    fontfamily=tt,
+    formatcom=\color{fgcode}
+  }
+
+  \newtcblisting{codeblock}[2][]{%
+    listing engine=minted,
+    minted language=#2,
+    minted options={fontsize=\small,breaklines,autogobble,bgcolor=bgcode},
+    colback=bgcode,
+    colframe=black!70,
+    arc=6pt,
+    boxrule=0.6pt,
+    left=10pt,right=10pt,top=8pt,bottom=8pt,
+    overlay={
+      \node[anchor=north west, inner sep=6pt] at (frame.north west)
+      {\tcbox[colback=brand, colframe=brand, arc=999pt, boxsep=2pt,
+             left=6pt,right=6pt, top=1pt,bottom=1pt,
+             on line, nobeforeafter, tcbox raise base]{\color{white}\footnotesize #2}};
+    },
+    #1
+  }
+\else
+  % Fallback sin shell-escape: usamos listings dentro de tcolorbox
+  \usepackage{listings}
+  \lstdefinestyle{templatelst}{%
+    backgroundcolor=\color{bgcode},
+    basicstyle=\ttfamily\small\color{fgcode},
+    breaklines=true,
+    columns=fullflexible,
+    showstringspaces=false,
+    frame=none,
+    keywordstyle=\color{brand},
+  }
+
+  \newenvironment{codeblock}[2][]% optional args, language
+  {%
+    \begin{tcolorbox}[colback=bgcode,colframe=black!70,arc=6pt,boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt,#1]
+    \lstset{style=templatelst,language=#2}
+    \begin{lstlisting}
+  }
+  {
+    \end{lstlisting}
+    \end{tcolorbox}
+  }
+\fi
 
 % -------------------- Metadatos del documento --------------------
-\title{Manual de Construcción y Uso\\\textit{CNC Open-Source para PCBs}}
-\author{Juan Tomás Soria}
+% Sensible defaults for a template — override in main.tex
+	itle{\docTitle\\\textit{Subt\'itulo opcional}}
+\author{\docAuthor}
 \date{\today}
+
+% Useful packages that might be referenced by titlepage
+\usepackage{graphicx}
 
 % ---- end of preamble.tex ----

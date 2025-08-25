@@ -1,16 +1,18 @@
-% ---- titlepage.tex (auto-extracted) ----
+% ---- titlepage.tex (template) ----
 \begin{titlepage}
   \centering
   \vspace*{3cm}
-  {\Huge \bfseries Manual de Construcción y Uso \\\vspace{0.4cm} CNC Open-Source para PCBs \par}
+  {\Huge \bfseries \docTitle \\\vspace{0.4cm} \textit{Subt\'itulo opcional} \par}
   \vspace{1.5cm}
-  {\Large Versión 1.0.0 \par}
+  {\Large Versi\'on \docVersion \par}
   \vspace{1cm}
-  {\Large Juan Tomás Soria \par}
+  {\Large \docAuthor \par}
   \vfill
-  {\includegraphics[width=0.6\textwidth]{logo.jpg} \par} % opcional
+  % Optional logo: place a file named 'logo' with supported extension in the project root
+  \IfFileExists{logo.pdf}{\includegraphics[width=0.6\textwidth]{logo.pdf}}{}
+  \IfFileExists{logo.jpg}{\includegraphics[width=0.6\textwidth]{logo.jpg}}{}
   \vfill
-  {\large \today \par}
+  {\large \date{\today}\par}
 \end{titlepage}
 
 % ---- end of titlepage.tex ----
