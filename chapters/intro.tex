@@ -1,14 +1,48 @@
 % ---- chapters/intro.tex ----
 \chapter{Introducción}
 \label{ch:intro}
-Esta CNC fue diseñada para la \textbf{fabricación de PCBs}, combinando piezas impresas en 3D, perfiles de aluminio y un stack de software open-source.  
-El flujo general es:
+
+Esta máquina CNC fue construida con el objetivo principal de fabricar placas de circuito impreso (PCBs) de manera accesible y utilizando herramientas open-source. El diseño se inspira en proyectos compartidos por la comunidad maker (por ejemplo, playlists de YouTube sobre CNC caseras y guías tipo "Dremel CNC" en Instructables), adaptándolos y simplificándolos según los recursos típicamente disponibles.
+
+La filosofía detrás de este proyecto es open-source y DIY ("Do It Yourself"): todas las piezas impresas en 3D, la electrónica de control (basada en Arduino con GRBL), y el software utilizado (KiCad, FlatCAM, CNC.js) son libres y de uso gratuito. Esto permite que cualquier persona pueda replicar la máquina, modificarla y mejorarla para sus necesidades.
+
+El manual que estás leyendo está orientado a documentar tanto la construcción como el uso de la CNC, con un enfoque especial en el flujo completo de trabajo para PCBs: desde el diseño electrónico hasta el fresado final de la placa. El flujo típico es:
 \[
-\text{KiCad} \rightarrow \text{FlatCAM} \rightarrow \text{GRBL} \rightarrow \text{CNC.js}
+		ext{KiCad} \rightarrow \text{FlatCAM} \rightarrow \text{GRBL} \rightarrow \text{CNC.js}
 \]
 
 \begin{notebox}
-Este manual tiene formato \textit{editorial}: combina teoría, instrucciones prácticas y buenas prácticas. Se espera que evolucione con nuevas configuraciones aportadas por la comunidad.
+Este manual combina teoría, instrucciones paso a paso y recomendaciones prácticas. Está pensado para evolucionar: contribuciones y variantes (mecánicas o electrónicas) son bienvenidas.
+\end{notebox}
+
+% Recomendaciones estéticas y de documentación
+\begin{tipbox}
+Para que el manual sea más claro visualmente, incluye fotografías del ensamblaje en cada sección clave y capturas de pantalla del software (KiCad, FlatCAM y CNC.js). Usa figuras con leyendas cortas y orientativas. Mantén imágenes en la carpeta `figures/` y referencia con `\includegraphics`.
+\end{tipbox}
+
+\section*{Referencia visual}
+\addcontentsline{toc}{section}{Referencia visual}
+Para acompañar la construcción y el uso de la máquina, se recomienda revisar los siguientes recursos de la comunidad maker que sirvieron como base e inspiración para este proyecto:
+\begin{itemize}
+	\item \textbf{📺 Playlist de YouTube – DIY CNC:} \href{https://www.youtube.com/playlist?list=PLktKi_COpyPRVn0faQq_ZoM37WAOP8pfA}{Ver playlist en YouTube}. Serie de videos que documentan el armado y funcionamiento de una CNC impresa en 3D.
+	\item \textbf{🖨️ Modelos en Thingiverse:} \href{https://www.thingiverse.com/thing:3004773}{Thingiverse — CNC 3D printed}. Archivos STL para imprimir las piezas plásticas de la estructura y los soportes de la máquina.
+	\item \textbf{📑 Instructable – DIY Dremel CNC:} \href{https://www.instructables.com/DIY-3D-Printed-Dremel-CNC/}{Leer instructable} que describe el montaje de una CNC casera utilizando piezas impresas y una herramienta tipo Dremel.
+\end{itemize}
+
+\subsection*{Software y firmware}
+\addcontentsline{toc}{subsection}{Software y firmware}
+\begin{itemize}
+	\item \href{https://github.com/grbl/grbl}{GRBL (firmware)} — firmware para controladores basados en Arduino.
+	\item \href{http://flatcam.org/}{FlatCAM} — herramienta para generar G-code a partir de archivos de PCB.
+	\item \href{https://cnc.js.org/}{CNC.js} — interfaz web para controlar la máquina.
+	\item \href{https://www.kicad.org/}{KiCad} — suite de diseño de PCB (código abierto).
+\end{itemize}
+
+Estos recursos visuales complementan el manual y permiten tener una idea clara de cómo es la máquina, cómo se ensambla y cómo luce en funcionamiento.
+
+% Nota de autor para mantener la plantilla
+\begin{notebox}
+Sugerencia: añade una pequeña galería (carpeta `figures/intro/`) con fotos del prototipo real y, si es posible, una diagrama esquemático de la máquina (PDF o SVG) para que el lector identifique rápidamente las piezas principales.
 \end{notebox}
 
 % ---- end of chapters/intro.tex ----
