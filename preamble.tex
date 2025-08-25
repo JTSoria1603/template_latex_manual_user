@@ -1,0 +1,111 @@
+% ---- preamble.tex (auto-extracted from main.tex) ----
+\documentclass[12pt,a4paper]{report}
+
+% -------------------- Tipografía y estilo base --------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}    % Palatino
+\usepackage{inconsolata} % Fuente monoespaciada moderna
+\usepackage{microtype}   % Mejoras tipográficas
+\linespread{1.15}        % Espaciado elegante
+
+% -------------------- Márgenes --------------------
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+
+% -------------------- Colores --------------------
+\usepackage{xcolor}
+\definecolor{brand}{HTML}{2563EB} % azul acento
+\definecolor{text}{HTML}{0F172A}  % texto base
+\definecolor{muted}{HTML}{6B7280} % gris medio
+\definecolor{bgcode}{HTML}{111827}
+\definecolor{fgcode}{HTML}{E5E7EB}
+\definecolor{ok}{HTML}{10B981}
+\definecolor{warn}{HTML}{F59E0B}
+\definecolor{danger}{HTML}{EF4444}
+
+% -------------------- Hipervínculos --------------------
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=brand,
+  urlcolor=brand,
+  citecolor=brand
+}
+
+% -------------------- Cabecera y pie --------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Manual CNC para PCBs}
+\fancyhead[R]{Versión 1.0.0}
+\fancyfoot[L]{Juan Tomás Soria}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% -------------------- Portada --------------------
+\usepackage{titling}
+\pretitle{\begin{center}\Huge\bfseries\color{brand}}
+\posttitle{\par\end{center}\vskip 2em}
+\preauthor{\begin{center}\Large}
+\postauthor{\par\end{center}\vskip 2em}
+\predate{\begin{center}\large}
+\postdate{\par\end{center}\vskip 2em}
+
+% -------------------- Boxes Tip/Nota/Cuidado --------------------
+\usepackage[most]{tcolorbox}
+\tcbset{colback=white,arc=6pt,boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
+
+\newtcolorbox{tipbox}{colback=ok!10,colframe=ok!50!black,
+overlay={\node[anchor=north west,inner sep=6pt,text=ok!40!black]
+at (frame.north west){\bfseries Tip};}}
+\newtcolorbox{notebox}{colback=brand!8,colframe=brand!60!black,
+overlay={\node[anchor=north west,inner sep=6pt,text=brand!40!black]
+at (frame.north west){\bfseries Nota};}}
+\newtcolorbox{warnbox}{colback=warn!10,colframe=warn!60!black,
+overlay={\node[anchor=north west,inner sep=6pt,text=warn!50!black]
+at (frame.north west){\bfseries Cuidado};}}
+
+% -------------------- Código con minted --------------------
+\usepackage[newfloat]{minted} % Requiere -shell-escape
+\setminted{
+  breaklines=true,
+  autogobble=true,
+  fontsize=\small,
+  bgcolor=bgcode,
+}
+\makeatletter
+\setminted{
+  breaklines=true,
+  autogobble=true,
+  fontsize=\small,
+  bgcolor=bgcode,
+  fontfamily=tt,
+  formatcom=\color{fgcode}  % <- fuerza el texto en fgcode
+}
+\makeatother
+
+\newtcblisting{codeblock}[2][]{%
+  listing engine=minted,
+  minted language=#2,
+  minted options={fontsize=\small,breaklines,autogobble,bgcolor=bgcode},
+  colback=bgcode,
+  colframe=black!70,
+  arc=6pt,
+  boxrule=0.6pt,
+  left=10pt,right=10pt,top=8pt,bottom=8pt,
+  overlay={
+    \node[anchor=north west, inner sep=6pt] at (frame.north west)
+    {\tcbox[colback=brand, colframe=brand, arc=999pt, boxsep=2pt,
+           left=6pt,right=6pt, top=1pt,bottom=1pt,
+           on line, nobeforeafter, tcbox raise base]{\color{white}\footnotesize #2}};
+  },
+  #1
+}
+
+% -------------------- Metadatos del documento --------------------
+\title{Manual de Construcción y Uso\\\textit{CNC Open-Source para PCBs}}
+\author{Juan Tomás Soria}
+\date{\today}
+
+% ---- end of preamble.tex ----

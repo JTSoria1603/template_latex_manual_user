@@ -1,0 +1,20 @@
+% ---- chapters/workflow.tex ----
+\chapter{Flujo KiCad → FlatCAM → CNC.js}
+\label{ch:workflow}
+\begin{enumerate}
+  \item KiCad: diseñar PCB y exportar Gerber/Excellon.
+  \item FlatCAM: definir aislamiento, taladros y contorno → G-code.
+  \item CNC.js: fijar cero, cargar y ejecutar.
+\end{enumerate}
+
+\section*{Ejemplo de G-code}
+\begin{codeblock}{text}
+G21 ; mm
+G90 ; absoluto
+G0 Z5
+G0 X0 Y0
+G1 Z-0.10 F100
+G1 X10 Y0 F250
+\end{codeblock}
+
+% ---- end of chapters/workflow.tex ----

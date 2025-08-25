@@ -1,0 +1,22 @@
+% ---- chapters/grbl.tex ----
+\chapter{GRBL (firmware)}
+\label{ch:grbl}
+\section*{Instalación}
+Cargar \texttt{grblUpload} desde Arduino IDE.
+
+\section*{Parámetros importantes}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Parámetro} & \textbf{Función} & \textbf{Valor inicial} \\
+\hline
+\$100 & Pasos/mm eje X & 250 \\
+\$101 & Pasos/mm eje Y & 250 \\
+\$102 & Pasos/mm eje Z & 250 \\
+\$110–112 & Velocidad máx (mm/min) & 800–1200 \\
+\$120–122 & Aceleración (mm/s$^2$) & 50–100 \\
+\hline
+\end{tabular}
+\end{center}
+
+% ---- end of chapters/grbl.tex ----

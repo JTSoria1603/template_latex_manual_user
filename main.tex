@@ -1,0 +1,28 @@
+% Main file converted to modular structure. It now inputs the shared preamble, titlepage and chapter files.
+% Keep this file minimal — editing chapters should be done under the 'chapters/' folder.
+
+% Load preamble (documentclass, packages and metadata)
+\input{preamble.tex}
+
+\begin{document}
+
+% Titlepage
+\input{titlepage.tex}
+
+% Índice de capítulos (manual y con enlaces rápidos)
+\input{chapters/index.tex}
+
+	ableofcontents
+\newpage
+
+% Chapters (modular files under chapters/)
+\input{chapters/intro.tex}
+\input{chapters/materials.tex}
+\input{chapters/mechanical.tex}
+\input{chapters/electronic.tex}
+\input{chapters/grbl.tex}
+\input{chapters/cncjs.tex}
+\input{chapters/workflow.tex}
+\input{chapters/conclusion.tex}
+
+\end{document}
