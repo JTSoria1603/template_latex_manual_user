@@ -56,9 +56,11 @@
 \predate{\begin{center}\large}
 \postdate{\par\end{center}\vskip 2em}
 
-% -------------------- Boxes Tip/Nota/Cuidado --------------------
+
+
+% -------------------- Boxes Tip/Nota/Cuidado -----------------
 \usepackage[most]{tcolorbox}
-	cbset{colback=white,arc=6pt,boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
+	tcbset{colback=white,arc=6pt,boxrule=0.6pt,left=10pt,right=10pt,top=8pt,bottom=8pt}
 
 \newtcolorbox{tipbox}{colback=ok!10,colframe=ok!50!black,
   overlay={\node[anchor=north west,inner sep=6pt,text=ok!40!black]
@@ -128,9 +130,13 @@
   }
 \fi
 
+
+
+
 % -------------------- Metadatos del documento --------------------
 % Sensible defaults for a template — override in main.tex
-	itle{\docTitle\\\textit{Subt\'itulo opcional}}
+
+	\title{\docTitle\\\textit{Subt\'itulo opcional}}
 \author{\docAuthor}
 \date{\today}
 
